@@ -1,0 +1,10 @@
+#for connecting to config server; all other app specific settings - store in application.yml
+spring:
+  application:
+    name: licsrv
+  profiles:
+    active:
+      default
+  cloud:
+    config:
+      uri: http://localhost:6767
