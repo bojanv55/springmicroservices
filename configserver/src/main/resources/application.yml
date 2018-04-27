@@ -1,4 +1,5 @@
-#http://localhost:6767/licsrv/default
+#endpoint for accessing default config: http://localhost:6767/licsrv/default
+#add env variable ENCRYPT_KEY to start /encrypt and /decrypt endpoints; set ENCRYPT_KEY=123456; echo %ENCRYPT_KEY% (same terminal window as java)
 server:
   port: 6767
 spring:

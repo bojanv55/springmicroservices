@@ -1,0 +1,6 @@
+#spring:
+#  cloud:
+#    config:
+#      server:
+#        encrypt:
+#          enabled: false #do not decrypt {cipher} properties, but let clients do it
