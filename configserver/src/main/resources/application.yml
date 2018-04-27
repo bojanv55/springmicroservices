@@ -2,11 +2,3 @@
 #add env variable ENCRYPT_KEY to start /encrypt and /decrypt endpoints; set ENCRYPT_KEY=123456; echo %ENCRYPT_KEY% (same terminal window as java)
 server:
   port: 6767
-spring:
-  profiles:
-    active: native
-  cloud:
-    config:
-      server:
-        native:
-          search-locations: file:///D:\Java\springmicroservices\configserver\src\main\resources\config\licsrv

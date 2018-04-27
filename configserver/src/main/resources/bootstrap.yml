@@ -1,6 +1,13 @@
-#spring:
-#  cloud:
-#    config:
-#      server:
-#        encrypt:
-#          enabled: false #do not decrypt {cipher} properties, but let clients do it
+spring:
+  application:
+    name: licsrv
+  profiles:
+    active: native
+  cloud:
+    zookeeper:
+      connect-string: 10.10.121.137:2181
+      config:
+        enabled: true
+        root: config
+        default-context: application
+        profile-separator: ','
