@@ -12,7 +12,7 @@ public class CommentService {
 	}
 
 	public Comment getComment(Integer id){
-		return this.commentRepo.findById(id).orElse(new Comment());
+		return commentRepo.findById(id).orElse(new Comment());
 	}
 
 }

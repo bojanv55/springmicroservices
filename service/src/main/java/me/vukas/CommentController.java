@@ -1,5 +1,6 @@
 package me.vukas;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("comments")
 public class CommentController {
 
+	@Autowired
+	private ServiceConfig config;
+
 	private CommentService commentService;
 
 	public CommentController(CommentService commentService){
@@ -17,7 +21,9 @@ public class CommentController {
 
 	@GetMapping("{id}")
 	public Comment getString(@PathVariable Integer id){
-		return this.commentService.getComment(id);
+		Comment result = commentService.getComment(id);
+		result.setContent(result.getContent() + config.getSomeProp());	//concat prop to content
+		return result;
 	}
 
 }

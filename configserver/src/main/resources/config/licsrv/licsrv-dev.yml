@@ -1,1 +1,2 @@
 tracer.property: "DEFAULT-DEV"
+spring.datasource.password: "error"

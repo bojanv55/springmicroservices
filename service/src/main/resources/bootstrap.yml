@@ -1,4 +1,6 @@
 #for connecting to config server; all other app specific settings - store in application.yml
+#to override default properties (should use ENV rather than this): java -Dspring.cloud.config.uri=http://localhost:6767 -Dspring.profiles.active=dev -jar xxx.jar
+#running in docker using ENV - | DOCKER -> environment: PROFILE: "dev" | SPRING -> -Dspring.profiles.active=$PROFILE
 spring:
   application:
     name: licsrv

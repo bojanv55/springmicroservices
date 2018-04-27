@@ -1,2 +1,7 @@
 server:
   port: 6868
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #expose /actuator/env endpoint (among all others), to show env information
