@@ -26,4 +26,9 @@ public class CommentController {
 		return result;
 	}
 
+	@GetMapping("text")
+	public String getText(){
+		return "Text";
+	}
+
 }

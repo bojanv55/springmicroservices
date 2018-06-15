@@ -19,6 +19,7 @@
         <module>service</module>
         <module>configserver</module>
         <module>eureka</module>
+        <module>discovery-client</module>
     </modules>
 
     <build>
