@@ -8,5 +8,16 @@ spring:
     active:
       default
   cloud:
+    refresh:
+      enabled: false  #solve jdbc cyclic dependency error
     config:
       uri: http://localhost:6767
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
