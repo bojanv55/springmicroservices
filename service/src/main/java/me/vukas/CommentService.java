@@ -1,6 +1,7 @@
 package me.vukas;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -14,10 +15,23 @@ public class CommentService {
 		this.commentRepo = commentRepo;
 	}
 
-	@HystrixCommand
+	@HystrixCommand(commandProperties = {
+			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",
+			value = "1000")
+	},
+	fallbackMethod = "dajCmt",
+	threadPoolKey = "nazivTreda",
+	threadPoolProperties = {
+			@HystrixProperty(name = "coreSize", value = "30"),
+			@HystrixProperty(name = "maxQueueSize", value = "10")
+	})
 	public Comment getComment(Integer id){
 		randomLong();
 		return commentRepo.findById(id).orElse(new Comment());
+	}
+
+	private Comment dajCmt(Integer id){
+		return new Comment();
 	}
 
 	private void randomLong(){
