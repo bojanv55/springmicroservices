@@ -5,7 +5,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 @Component
-@RefreshScope	//accessing this via POST to /actuator/refresh endpoint. Refreshes someProp if there is new value on config server.
+//@RefreshScope	//accessing this via POST to /actuator/refresh endpoint. Refreshes someProp if there is new value on config server.
 public class ServiceConfig {
 	@Value("${some.prop}")
 	private String someProp;

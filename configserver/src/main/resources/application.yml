@@ -9,4 +9,4 @@ spring:
     config:
       server:
         native:
-          search-locations: file:///D:\Java\springmicroservices\configserver\src\main\resources\config\licsrv
+          search-locations: file:///C:\Users\default.DESKTOP-7B8UCA1\IdeaProjects\springmicroservices\configserver\src\main\resources\config\licsrv

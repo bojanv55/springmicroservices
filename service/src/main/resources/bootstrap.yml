@@ -9,7 +9,7 @@ spring:
       default
   cloud:
     refresh:
-      enabled: false  #solve jdbc cyclic dependency error
+      enabled: false
     config:
       uri: http://localhost:6767
 
