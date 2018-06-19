@@ -21,6 +21,7 @@
         <module>eureka</module>
         <module>discovery-client</module>
         <module>zuul</module>
+        <module>auth</module>
     </modules>
 
     <build>
