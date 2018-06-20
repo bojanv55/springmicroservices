@@ -4,4 +4,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"  #expose /actuator/env endpoint (among all others), to show env information
+        include: "*" #expose /actuator/env endpoint (among all others), to show env information
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8901/user
