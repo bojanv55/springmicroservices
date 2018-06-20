@@ -12,6 +12,9 @@ public class CommentController {
 	@Lazy
 	private ServiceConfig config;
 
+	@Autowired
+	private Publisher publisher;
+
 	private CommentService commentService;
 
 	public CommentController(CommentService commentService){
@@ -27,6 +30,7 @@ public class CommentController {
 
 	@PostMapping("text")
 	public String getText(){
+		publisher.pub();
 		return "Text";
 	}
 

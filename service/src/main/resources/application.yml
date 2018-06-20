@@ -9,3 +9,19 @@ security:
   oauth2:
     resource:
       user-info-uri: http://localhost:8901/user
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: someTpc
+          content-type: application/json
+        input:
+          destination: someTpc
+          content-type: application/json
+          group: someGrp
+        kafka:
+          binder:
+            zkNodes: 192.168.50.50
+            brokers: 192.168.50.50
