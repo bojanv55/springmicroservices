@@ -21,7 +21,6 @@ spring:
           destination: someTpc
           content-type: application/json
           group: someGrp
-        kafka:
-          binder:
-            zkNodes: 192.168.50.50
-            brokers: 192.168.50.50
+      kafka:
+        binder:
+          brokers: 192.168.50.50
