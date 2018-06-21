@@ -1,13 +1,19 @@
 package me.vukas;
 
+import brave.Span;
+import brave.Tracer;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
 @Service
 public class CommentService {
+
+	@Autowired
+	private Tracer tracer;
 
 	private CommentRepository commentRepo;
 
@@ -26,8 +32,17 @@ public class CommentService {
 			@HystrixProperty(name = "maxQueueSize", value = "10")
 	})
 	public Comment getComment(Integer id){
-		randomLong();
-		return commentRepo.findById(id).orElse(new Comment());
+		Span span = tracer.nextSpan().name("jdbcSpan");
+		try (Tracer.SpanInScope ws = this.tracer.withSpanInScope(span.start())) {
+			randomLong();
+			Comment c = commentRepo.findById(id).orElse(new Comment());
+			span.tag("some.srv", "jdbc");
+			span.annotate("jdbcFinished");
+			return c;
+		}
+		finally {
+			span.finish();
+		}
 	}
 
 	private Comment dajCmt(Integer id){
