@@ -24,3 +24,10 @@ spring:
       kafka:
         binder:
           brokers: 192.168.50.50
+logging:
+  level:
+   root: info
+   org.springframework.web: info
+   org.hibernate: error
+
+

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("comments")
 public class CommentController {
 
-	@Autowired
-	@Lazy
-	private ServiceConfig config;
+	//@Autowired
+	//@Lazy
+	//private ServiceConfig config;
 
 	@Autowired
 	private Publisher publisher;
@@ -24,7 +24,7 @@ public class CommentController {
 	@GetMapping("{id}")
 	public Comment getString(@PathVariable Integer id){
 		Comment result = commentService.getComment(id);
-		result.setContent(result.getContent() + config.getSomeProp());	//concat prop to content
+		result.setContent(result.getContent());	//concat prop to content
 		return result;
 	}
 

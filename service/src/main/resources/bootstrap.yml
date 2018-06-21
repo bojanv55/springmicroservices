@@ -7,6 +7,11 @@ spring:
   profiles:
     active:
       default
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    base-url: http://192.168.50.50:9411
   cloud:
     refresh:
       enabled: false
