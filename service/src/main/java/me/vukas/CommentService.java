@@ -5,6 +5,8 @@ import brave.Tracer;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.sleuth.annotation.NewSpan;
+import org.springframework.cloud.sleuth.annotation.SpanTag;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -31,18 +33,12 @@ public class CommentService {
 			@HystrixProperty(name = "coreSize", value = "30"),
 			@HystrixProperty(name = "maxQueueSize", value = "10")
 	})
-	public Comment getComment(Integer id){
-		Span span = tracer.nextSpan().name("jdbcSpan");
-		try (Tracer.SpanInScope ws = this.tracer.withSpanInScope(span.start())) {
+	@NewSpan("jdbcSpan")
+	public Comment getComment(@SpanTag("testTag") Integer id){
+
 			randomLong();
-			Comment c = commentRepo.findById(id).orElse(new Comment());
-			span.tag("some.srv", "jdbc");
-			span.annotate("jdbcFinished");
-			return c;
-		}
-		finally {
-			span.finish();
-		}
+			return commentRepo.findById(id).orElse(new Comment());
+
 	}
 
 	private Comment dajCmt(Integer id){
